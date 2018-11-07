@@ -1,0 +1,27 @@
+{
+  "name": "@newsteam/scotch",
+  "version": "1.0.1",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "prepublishOnly": "gulp lint; node_modules/@babel/cli/bin/babel.js src --out-dir lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sweetlikepete/scotch.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sweetlikepete/scotch/issues"
+  },
+  "homepage": "https://github.com/sweetlikepete/scotch#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.5",
+    "@newsteam/brick": "^1.1.9",
+    "gulp": "^4.0.0"
+  }
+}
