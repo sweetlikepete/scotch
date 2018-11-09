@@ -72,6 +72,9 @@ const generateRouter = ({
             </Loadable.Capture>
         ));
 
+        console.log(["modules", modules]);
+        console.log(["context", context]);
+
         const helmet = Helmet.renderStatic();
 
         const scripts = [...new Set(getBundles(stats, modules).filter((bundle) => bundle.file.endsWith(".js"))

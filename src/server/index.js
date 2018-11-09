@@ -8,7 +8,7 @@ import middleware from "./middleware";
 import routers from "./routers";
 
 
-const server = function({
+const createServer = function({
     App,
     cacheExpiration = "1y",
     csp,
@@ -124,4 +124,4 @@ const server = function({
 };
 
 
-export default server;
+export default createServer;
