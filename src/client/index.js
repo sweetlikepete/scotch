@@ -5,11 +5,10 @@ import * as ReactDOM from "react-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { createStore } from "..";
 import { Frontload } from "react-frontload";
-import Loadable from "react-loadable";
 import { Provider } from "react-redux";
 
 
-export default async function createClient(App){
+export default async function createClient(App, Loadable){
 
     const { store, history } = createStore({});
 
