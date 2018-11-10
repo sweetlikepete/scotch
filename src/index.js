@@ -1,6 +1,7 @@
 
 
 import connectRoute from "./routes/connect";
+import createClient from "./client";
 import createStore from "./store";
 
 
@@ -17,6 +18,7 @@ const createServer = isServer ? eval("require")("./server").default : null;
 
 export {
     connectRoute,
+    createClient,
     createServer,
     createStore
 };
