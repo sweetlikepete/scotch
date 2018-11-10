@@ -3,6 +3,7 @@
 import connectRoute from "./routes/connect";
 import createClient from "./client";
 import createStore from "./store";
+import { Helmet } from "react-helmet";
 
 
 const isServer = !(
@@ -20,5 +21,6 @@ export {
     connectRoute,
     createClient,
     createServer,
-    createStore
+    createStore,
+    Helmet
 };
