@@ -5,10 +5,11 @@ import * as ReactDOM from "react-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { createStore } from "..";
 import { Frontload } from "react-frontload";
+import loadable from "react-loadable";
 import { Provider } from "react-redux";
 
 
-export default async function createClient(App, Loadable){
+export default async function createClient(App){
 
     const { store, history } = createStore({});
 
@@ -22,7 +23,7 @@ export default async function createClient(App, Loadable){
         </Provider>
     );
 
-    await Loadable.preloadReady();
+    await loadable.preloadReady();
 
     ReactDOM.hydrate(application, document.getElementById("app"));
 

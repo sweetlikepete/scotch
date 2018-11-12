@@ -4,6 +4,7 @@ import compression from "compression";
 import cookieParser from "cookie-parser";
 import express from "express";
 import helmet from "helmet";
+import loadable from "react-loadable";
 import middleware from "./middleware";
 import routers from "./routers";
 
@@ -15,7 +16,6 @@ const createServer = function({
     cwd = process.cwd(),
     hostname,
     local = false,
-    loadable,
     manifest,
     // This isn't a magic number, it's the port
     // eslint-disable-next-line no-magic-numbers
