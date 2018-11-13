@@ -20,7 +20,7 @@ const createServer = function({
     manifest,
     // This isn't a magic number, it's the port
     // eslint-disable-next-line no-magic-numbers
-    port = 20000,
+    port = process.env.PORT || 20000,
     production = true,
     reducers = {},
     staticFolder = "static",
