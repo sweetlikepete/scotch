@@ -19,7 +19,7 @@ const createServer = function({
     local = false,
     manifest,
     // This isn't a magic number, it's the port
-    // eslint-disable-next-line no-magic-numbers
+    // eslint-disable-next-line no-magic-numbers, no-process-env
     port = process.env.PORT || 20000,
     production = true,
     reducers = {},
