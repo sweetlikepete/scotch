@@ -16,7 +16,7 @@ const connectRouteProxy = (mod) => {
 
             if(!props.data){
 
-                const data = await mod.default.data();
+                const data = mod.default.data ? await mod.default.data() : {};
 
                 props.setRouteData(data, props.match.url);
 
