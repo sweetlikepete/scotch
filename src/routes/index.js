@@ -33,7 +33,7 @@ const connectRoute = (mod) => {
 
 };
 
-const createRoutes = ({ component, loading, routes }) => routes.map((route) => ({
+const createRoutes = ({ component, loading, routes, webpack }) => routes.map((route) => ({
     component: loadable({
         loader: () => new Promise((resolve) => {
 
@@ -50,7 +50,7 @@ const createRoutes = ({ component, loading, routes }) => routes.map((route) => (
         }),
         loading: route.loading || loading,
         modules: [`./${ route.id }/`],
-        webpack: () => [require.resolveWeak(`./${ route.id }/`)]
+        webpack: () => webpack(route.id)
     }),
     exact: route.exact !== false,
     path: route.path

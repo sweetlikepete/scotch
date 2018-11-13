@@ -1,9 +1,9 @@
 
 
-import connectRoute from "./routes/connect";
 import createClient from "./client";
 import createRoutes from "./routes";
 import createStore from "./store";
+import RouteComponent from "./route";
 
 
 const isServer = !(
@@ -18,9 +18,9 @@ const createServer = isServer ? eval("require")("./server").default : null;
 
 
 export {
-    connectRoute,
     createClient,
     createRoutes,
     createServer,
-    createStore
+    createStore,
+    RouteComponent
 };
