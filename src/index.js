@@ -3,6 +3,7 @@
 import createClient from "./client";
 import createRoutes from "./routes";
 import createStore from "./store";
+import logger from "./logger";
 import RouteComponent from "./route";
 
 
@@ -22,5 +23,6 @@ export {
     createRoutes,
     createServer,
     createStore,
+    logger,
     RouteComponent
 };

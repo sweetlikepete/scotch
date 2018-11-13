@@ -1,34 +1,24 @@
 
 
-import expressWinston from "express-winston";
-import winston from "winston";
+import logger from "../../logger";
 
 
-const logger = ({ local }) => ({
+const loggingMiddleware = () => (req, res, next) => {
 
-    error: expressWinston.errorLogger({
-        transports: [
-            new winston.transports.Console({
-                colorize: local,
-                json: true
-            })
-        ]
-    }),
+    logger.log(`${ req.url } endpoint hit`, {
+        httpRequest: {
+            remoteIp: req.connection.remoteAddress,
+            requestMethod: req.method,
+            requestUrl: req.url,
+            status: res.statusCode
+        }
+    });
 
-    request: expressWinston.logger({
-        expressFormat: true,
-        meta: false,
-        transports: [
-            new winston.transports.Console({
-                colorize: local,
-                json: false
-            })
-        ]
-    })
+    next();
 
-});
+};
 
 
 export {
-    logger as default
+    loggingMiddleware as default
 };

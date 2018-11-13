@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import express from "express";
 import helmet from "helmet";
 import loadable from "react-loadable";
+import logger from "../logger";
 import middleware from "./middleware";
 import routers from "./routers";
 
@@ -76,7 +77,7 @@ const createServer = function({
     app.use(cookieParser());
 
     // Add the request logger here so it skips static file requests.
-    app.use(middleware.logger({ local }).request);
+    app.use(middleware.logger());
 
     // Add app router
     app.use(routers.app({
@@ -87,22 +88,26 @@ const createServer = function({
     }));
 
     /*
-     * Add the error logger after all middleware and routes so that
-     * It can log errors from the whole application. Any custom error
-     * Handlers should go after this.
+     * Listen for unhandled promise rejections and log the errors. If this isn't
+     * done, it's pretty impossible to track these errors down.
      */
-    app.use(middleware.logger({ local }).error);
+    process.on("unhandledRejection", (reason, rejection) => {
+
+        logger.error(`Unhandled Rejection at: ${ rejection }\nreason:\n${ reason }\n`);
+
+    });
 
     /*
      * Listen for unhandled promise rejections and log the errors. If this isn't
      * done, it's pretty impossible to track these errors down.
      */
-    process.on("unhandledRejection", (reason, error) => {
+    process.on("uncaughtException", (exception) => {
 
-        console.error(error);
+        logger.error(`Caught exception: ${ exception }\n`);
 
     });
 
+    // Start up the server after the preloads complete
     loadable.preloadAll().then(() => {
 
         app.listen(port, () => {
