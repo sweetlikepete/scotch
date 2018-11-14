@@ -17,7 +17,9 @@ const generateRouter = ({
 
         res.setHeader("Content-Type", "application/json");
 
-        res.send(JSON.stringify(manifest));
+        res
+        .send(JSON.stringify(manifest))
+        .end();
 
 
     });

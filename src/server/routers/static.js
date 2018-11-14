@@ -17,6 +17,8 @@ const generateRouter = ({
     const pub = staticFolder;
     const src = "src/web/build/client";
 
+    console.log(["PUB", pub]);
+
     // Map of static paths to directories
     const map = [
         {
@@ -27,7 +29,7 @@ const generateRouter = ({
 
         file.src = file.src.replace(`/${ staticFolder }`, src);
 
-        return file
+        return file;
 
     }));
 

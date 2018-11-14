@@ -105,7 +105,8 @@ const generateRouter = ({
             </html>
         `
         .replace(/^\s*/gm, "")
-        .replace(/(?:\r\n|\r|\n)/g, ""));
+        .replace(/(?:\r\n|\r|\n)/g, ""))
+        .end();
 
     });
 
