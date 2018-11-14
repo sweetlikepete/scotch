@@ -4,8 +4,8 @@
   "description": "",
   "main": "lib/index.js",
   "scripts": {
-    "build": "gulp lint && rm -rf lib && node_modules/@babel/cli/bin/babel.js src --out-dir lib",
-    "prepublishOnly": "npm run build"
+    "build": "rm -rf lib && node_modules/@babel/cli/bin/babel.js src --out-dir lib",
+    "prepublishOnly": "gulp lint && npm run build"
   },
   "engines": {
     "node": ">=8.0.0"
@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/sweetlikepete/scotch#readme",
   "dependencies": {
-    "@babel/core": "^7.1.5",
+    "@babel/core": "^7.1.6",
     "@babel/preset-react": "^7.0.0",
     "@google-cloud/logging-winston": "^0.10.2",
     "compression": "^1.7.3",
@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.1.5",
-    "@newsteam/brick": "^1.1.9",
+    "@newsteam/brick": "^1.1.19",
     "gulp": "^4.0.0"
   }
 }

@@ -4,6 +4,7 @@ import * as fs from "fs";
 import * as path from "path";
 import * as React from "react";
 import { Frontload, frontloadServerRender } from "react-frontload";
+import compression from "compression";
 import createStore from "../../store";
 import express from "express";
 import { getBundles } from "react-loadable/webpack";
@@ -29,6 +30,8 @@ const generateRouter = ({
     });
 
     router.use(slash());
+
+    router.use(compression());
 
     /*
      * Force 301 redirects when there is no trailing slash

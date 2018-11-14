@@ -21,8 +21,8 @@ const createServer = function({
     // This isn't a magic number, it's the port
     // eslint-disable-next-line no-magic-numbers, no-process-env
     port = process.env.PORT || 20000,
-    production = true,
     reducers = {},
+    staticFiles = [],
     staticFolder = "static",
     xPoweredBy = "https://www.youtube.com/watch?v=e_DqV1xdf-Y"
 }){
@@ -44,15 +44,16 @@ const createServer = function({
         app.disable("etag");
     }
 
-    // Use gzip through the compression middleware
-    app.use(compression());
+    // Use gzip through the compression middleware for all non-static routes
+    app.use(compression({
+        threshold: 0
+    }));
 
     // Add the static file router
     app.use(routers.static({
         cacheExpiration,
         cwd,
-        local,
-        production,
+        staticFiles,
         staticFolder,
         xPoweredBy
     }));
@@ -64,6 +65,9 @@ const createServer = function({
 
     // Enable some default protections with https://www.npmjs.com/package/helmet
     app.use(helmet());
+
+    // Add the header middleware
+    app.use(middleware.header({ xPoweredBy }));
 
     // Set up content security policy if it's configured
     if(csp){
