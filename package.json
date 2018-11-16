@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.1.5",
-    "@newsteam/brick": "^1.1.19",
+    "@newsteam/brick": "^1.1.20",
     "gulp": "^4.0.0"
   }
 }

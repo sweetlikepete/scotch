@@ -20,7 +20,8 @@ const generateRouter = ({
     App,
     cwd = process.cwd(),
     local,
-    reducers
+    reducers,
+    staticFolder
 }) => {
 
     // Force exact matches on paths
@@ -75,16 +76,30 @@ const generateRouter = ({
             </Loadable.Capture>
         ));
 
-        console.log(["modules", modules]);
-        console.log(["context", context]);
-
         const helmet = Helmet.renderStatic();
 
-        const scripts = [...new Set(getBundles(stats, modules).filter((bundle) => bundle.file.endsWith(".js"))
-        .map((bundle) => bundle.publicPath)
-        .concat([
-            assets.main.js
-        ]))];
+        const assetMap = (ext) => [
+            ...new Set(
+                getBundles(stats, modules)
+                .filter(bundle => bundle.file.endsWith(`.${ ext }`))
+                .map(bundle => bundle.publicPath)
+                .concat([
+                     assets.main[ext]
+                ])
+            )
+        ];
+
+        const scripts = assetMap("js");
+        const styles = assetMap("css");
+
+        const encodedStaticFolder = staticFolder.split("/").map(sub => encodeURIComponent(sub)).join("/");
+        const link = (path, type) => `<${ path.replace(`/${ staticFolder }/`, `/${ encodedStaticFolder }/`) }>;rel=preload;as=${ type }`;
+
+        // Set the http2 lint header with assets that need to be pushed
+        res.setHeader("link", [
+            ...scripts.map((path) => link(path, "script")),
+            ...styles.map((path) => link(path, "style"))
+        ].join(","));
 
         res.send(`
             <!doctype html>
@@ -97,6 +112,7 @@ const generateRouter = ({
                     ${ helmet.meta.toString() }
                     ${ helmet.link.toString() }
                     <script id="app-state-data" type="application/json">${ JSON.stringify(store.getState()) }</script>
+                    ${ styles.map((href) => `<link href="${ href }" rel="stylesheet">`).join("") }
                 </head>
                 <body ${ helmet.bodyAttributes.toString() }>
                     <div id="app">${ html }</div>
@@ -105,8 +121,9 @@ const generateRouter = ({
             </html>
         `
         .replace(/^\s*/gm, "")
-        .replace(/(?:\r\n|\r|\n)/g, ""))
-        .end();
+        .replace(/(?:\r\n|\r|\n)/g, ""));
+
+        res.end();
 
     });
 

@@ -88,7 +88,8 @@ const createServer = function({
         App,
         cwd,
         local,
-        reducers
+        reducers,
+        staticFolder
     }));
 
     /*

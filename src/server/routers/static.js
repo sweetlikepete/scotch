@@ -16,13 +16,12 @@ const generateRouter = ({
     // Static public url base and source
     const pub = staticFolder;
     const src = "src/web/build/client";
-
-    console.log(["PUB", pub]);
+    const encodedStaticFolder = staticFolder.split("/").map(sub => encodeURIComponent(sub)).join("/");
 
     // Map of static paths to directories
     const map = [
         {
-            pub: `/${ encodeURIComponent(pub) }`,
+            pub: `/${ encodedStaticFolder }`,
             src
         }
     ].concat((staticFiles || []).map((file) => {
