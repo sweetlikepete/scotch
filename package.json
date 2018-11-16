@@ -5,7 +5,8 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "rm -rf lib && node_modules/@babel/cli/bin/babel.js src --out-dir lib",
-    "prepublishOnly": "gulp lint && npm run build"
+    "lint": "gulp lint",
+    "prepublishOnly": "npm run lint && npm run build"
   },
   "engines": {
     "node": ">=8.0.0"

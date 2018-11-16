@@ -81,10 +81,10 @@ const generateRouter = ({
         const assetMap = (ext) => [
             ...new Set(
                 getBundles(stats, modules)
-                .filter(bundle => bundle.file.endsWith(`.${ ext }`))
-                .map(bundle => bundle.publicPath)
+                .filter((bundle) => bundle.file.endsWith(`.${ ext }`))
+                .map((bundle) => bundle.publicPath)
                 .concat([
-                     assets.main[ext]
+                    assets.main[ext]
                 ])
             )
         ];
@@ -92,13 +92,13 @@ const generateRouter = ({
         const scripts = assetMap("js");
         const styles = assetMap("css");
 
-        const encodedStaticFolder = staticFolder.split("/").map(sub => encodeURIComponent(sub)).join("/");
-        const link = (path, type) => `<${ path.replace(`/${ staticFolder }/`, `/${ encodedStaticFolder }/`) }>;rel=preload;as=${ type }`;
+        const encodedStaticFolder = staticFolder.split("/").map((sub) => encodeURIComponent(sub)).join("/");
+        const link = (url, type) => `<${ url.replace(`/${ staticFolder }/`, `/${ encodedStaticFolder }/`) }>;rel=preload;as=${ type }`;
 
         // Set the http2 lint header with assets that need to be pushed
         res.setHeader("link", [
-            ...scripts.map((path) => link(path, "script")),
-            ...styles.map((path) => link(path, "style"))
+            ...scripts.map((url) => link(url, "script")),
+            ...styles.map((url) => link(url, "style"))
         ].join(","));
 
         res.send(`

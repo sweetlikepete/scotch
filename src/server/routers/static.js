@@ -14,9 +14,8 @@ const generateRouter = ({
 }) => {
 
     // Static public url base and source
-    const pub = staticFolder;
     const src = "src/web/build/client";
-    const encodedStaticFolder = staticFolder.split("/").map(sub => encodeURIComponent(sub)).join("/");
+    const encodedStaticFolder = staticFolder.split("/").map((sub) => encodeURIComponent(sub)).join("/");
 
     // Map of static paths to directories
     const map = [
