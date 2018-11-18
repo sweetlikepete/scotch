@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { frontloadConnect } from "react-frontload";
 import loadable from "react-loadable";
-import { setRouteData } from "../store/reducers/routes";
+import { setRouteData } from "../../store/reducers/routes";
 
 
 const connectRoute = (mod) => {
@@ -33,7 +33,7 @@ const connectRoute = (mod) => {
 
 };
 
-const createRoutes = ({ component, loading, routes, webpack }) => routes.map((route) => ({
+const createAppRoutes = ({ component, loading, routes, webpack }) => routes.map((route) => ({
     component: loadable({
         loader: () => new Promise((resolve) => {
 
@@ -58,5 +58,5 @@ const createRoutes = ({ component, loading, routes, webpack }) => routes.map((ro
 
 
 export {
-    createRoutes as default
+    createAppRoutes as default
 };

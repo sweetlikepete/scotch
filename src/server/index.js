@@ -16,6 +16,11 @@ const createServer = function({
     csp,
     cwd = process.cwd(),
     hostname,
+    jwtSecret,
+    // This isn't a magic number, it's the max age of the jwt cookie - we'll use it later
+    // eslint-disable-next-line no-magic-numbers, no-unused-vars
+    jwtCookieMaxAge = 31557600000,
+    jwtCookieName = "jwtcookie",
     local = false,
     manifest,
     // This isn't a magic number, it's the port
@@ -79,6 +84,12 @@ const createServer = function({
 
     // Add the cookie parsing middleware
     app.use(cookieParser());
+
+    // Add the JWT middleware. This requires the cookieParser middleware.
+    app.use(middleware.jwt({
+        jwtCookieName,
+        jwtSecret
+    }));
 
     // Add the request logger here so it skips static file requests.
     app.use(middleware.logger());

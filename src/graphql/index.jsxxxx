@@ -1,10 +1,10 @@
 
 
-import config from "src/web/config";
 import gclient from "graphql-client";
+import gql from "graphql";
 
 
-const gqlError = function(err){
+const gqlError = (err) => {
 
     const error = new Error();
 
@@ -45,7 +45,7 @@ class GraphqlClient{
 
         // Webpack rewrites this reference to process through the DefinePlugin
         // eslint-disable-next-line no-process-env
-        if(process.env.CLIENT !== "browser"){
+        if(process.env.ENVIRONMENT === "server"){
 
             /*
              * Point to the production graphql on local development server if
@@ -66,7 +66,6 @@ class GraphqlClient{
 
             }else{
 
-                const gql = require("graphql");
                 const schema = require("questly/routers/graphql").schema(this.req);
 
                 response = await gql.graphql({
@@ -109,6 +108,7 @@ class GraphqlClient{
     }
 
 }
+
 
 const graphqlClientInstance = new GraphqlClient();
 

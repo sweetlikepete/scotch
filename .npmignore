@@ -1,1 +1,5 @@
 /src/
+.babelrc.js
+/.vscode/
+gulpfile.js
+yarn.lock

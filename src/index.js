@@ -1,7 +1,7 @@
 
 
 import createClient from "./client";
-import createRoutes from "./routes";
+import createAppRoutes from "./app/routes";
 import createStore from "./store";
 import logger from "./logger";
 import RouteComponent from "./route";
@@ -19,8 +19,8 @@ const createServer = isServer ? eval("require")("./server").default : null;
 
 
 export {
+    createAppRoutes,
     createClient,
-    createRoutes,
     createServer,
     createStore,
     logger,
