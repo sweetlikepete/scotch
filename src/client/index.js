@@ -25,6 +25,10 @@ export default async function createClient(App){
 
     await loadable.preloadReady();
 
-    ReactDOM.hydrate(application, document.getElementById("app"));
+    /*
+     * If preact is being used, hydrate doesn't exist and render is the equivalent.
+     * https://github.com/developit/preact/issues/1060
+     */
+    (ReactDOM.hydrate || ReactDOM.render)(application, document.getElementById("app"));
 
 }
