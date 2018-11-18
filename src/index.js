@@ -1,7 +1,7 @@
 
 
-import createClient from "./client";
 import createAppRoutes from "./app/routes";
+import createClient from "./client";
 import createStore from "./store";
 import logger from "./logger";
 import RouteComponent from "./route";
