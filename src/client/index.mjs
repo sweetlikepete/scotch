@@ -1,12 +1,12 @@
 
 
-import React from "react";
-import ReactDOM from "react-dom";
 import { ConnectedRouter } from "connected-react-router";
-import { createStore } from "../index";
+import { createStore } from "..";
 import { Frontload } from "react-frontload";
 import loadable from "react-loadable";
 import { Provider } from "react-redux";
+import React from "react";
+import ReactDOM from "react-dom";
 
 
 export default async function createClient(App){

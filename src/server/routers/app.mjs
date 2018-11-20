@@ -1,16 +1,20 @@
 
 
-import React from "react";
-import fs from "fs";
-import path from "path";
-import { Frontload, frontloadServerRender } from "react-frontload";
+import {
+    Frontload,
+    frontloadServerRender
+} from "react-frontload";
+
 import compression from "compression";
-import createStore from "../../store/index";
+import createStore from "../../store";
 import express from "express";
+import fs from "fs";
 import { getBundles } from "react-loadable/webpack";
 import { Helmet } from "react-helmet";
 import Loadable from "react-loadable";
+import path from "path";
 import { Provider } from "react-redux";
+import React from "react";
 import { renderToString } from "react-dom/server";
 import slash from "express-slash";
 import { StaticRouter } from "react-router-dom";

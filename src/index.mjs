@@ -17,6 +17,11 @@ const isServer = !(
 // eslint-disable-next-line no-eval
 const createServer = isServer ? eval("require")("./server").default : null;
 
+const testShit = function(){
+
+    console.log("TESTSHIT");
+
+};
 
 export {
     createAppRoutes,
@@ -24,5 +29,6 @@ export {
     createServer,
     createStore,
     logger,
-    RouteComponent
+    RouteComponent,
+    testShit
 };
