@@ -1,6 +1,6 @@
 
 
-import logger from "../../logger";
+import logger from "../../logger/index";
 
 
 const loggingMiddleware = () => (req, res, next) => {

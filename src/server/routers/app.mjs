@@ -1,11 +1,11 @@
 
 
-import * as fs from "fs";
-import * as path from "path";
-import * as React from "react";
+import React from "react";
+import fs from "fs";
+import path from "path";
 import { Frontload, frontloadServerRender } from "react-frontload";
 import compression from "compression";
-import createStore from "../../store";
+import createStore from "../../store/index";
 import express from "express";
 import { getBundles } from "react-loadable/webpack";
 import { Helmet } from "react-helmet";
