@@ -4,7 +4,7 @@ import createAppRoutes from "./app/routes";
 import createClient from "./client";
 import createStore from "./store";
 import logger from "./logger";
-import RouteComponent from "./route";
+import RouteComponent from "./app/route";
 
 
 const isServer = !(
@@ -17,11 +17,6 @@ const isServer = !(
 // eslint-disable-next-line no-eval
 const createServer = isServer ? eval("require")("./server").default : null;
 
-const testShit = function(){
-
-    console.log("TESTSHIT");
-
-};
 
 export {
     createAppRoutes,
@@ -29,6 +24,5 @@ export {
     createServer,
     createStore,
     logger,
-    RouteComponent,
-    testShit
+    RouteComponent
 };
