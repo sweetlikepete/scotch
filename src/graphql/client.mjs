@@ -18,44 +18,39 @@ const gqlError = (err) => {
 
 class GraphqlClient{
 
-    /*
-     * Create a graphQL Client.
-     * @param {Object} req - Page request. On the server it's the express req
-     * @param {Object} res - Page response. On the server it's the express res
-     */
-    constructor(req, res){
+    constructor({
+        endpoint = "/graphql/",
+        host,
+        req,
+        res,
+        schema = () => null
+    }){
 
+        this.endpoint = endpoint;
+        this.host = host;
         this.req = req;
         this.res = res;
+        this.schema = schema(req);
 
     }
 
-    /*
-     * Query the graph. On the server this query is done directly and so the
-     * request and response need to be passed in from the originating express
-     * handler. On the client a fetch call is made so there is no need to pass
-     * and request response information.
-     * @param {String} source - The graphql query source.
-     * @param {Object} variables - Variables passed to the graph query.
-     * @return {Object} Promise that resolves on complete of the query.
-     */
     async query(source, variables){
 
         let response = null;
 
         // Webpack rewrites this reference to process through the DefinePlugin
         // eslint-disable-next-line no-process-env
-        if(process.env.ENVIRONMENT === "server"){
+        if(process.env.ENVIRONMENT !== "client"){
 
             /*
-             * Point to the production graphql on local development server if
-             * you know what you're doing.
+             * Point the client to a specific host. You shouldn't do this unless
+             * you've had a good hard think about the consequences.
              */
-            if(config.LOCAL && config.USE_PRODUCTION_GRAPH){
+            if(this.host){
 
                 const client = await gclient({
                     credentials: "same-origin",
-                    url: `https://${ config.PRODUCTION_HOST }${ config.GRAPHQL_ENDPOINT }`
+                    url: `https://${ this.host }${ this.endpoint }`
                 });
 
                 response = await client.query(source, variables);
@@ -66,14 +61,12 @@ class GraphqlClient{
 
             }else{
 
-                const schema = require("questly/routers/graphql").schema(this.req);
-
                 response = await gql.graphql({
                     contextValue: {
                         req: this.req,
                         res: this.res
                     },
-                    schema,
+                    schema: this.schema,
                     source,
                     variableValues: variables
                 });
@@ -92,7 +85,7 @@ class GraphqlClient{
 
             const client = await gclient({
                 credentials: "same-origin",
-                url: `${ protocol }://${ host }:${ port }${ config.GRAPHQL_ENDPOINT }`
+                url: `${ protocol }://${ host }:${ port }${ this.endpoint }`
             });
 
             response = await client.query(source, variables);
@@ -110,10 +103,6 @@ class GraphqlClient{
 }
 
 
-const graphqlClientInstance = new GraphqlClient();
-
-
 export {
-    graphqlClientInstance as graphql,
-    GraphqlClient
+    GraphqlClient as default
 };
