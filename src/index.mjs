@@ -1,6 +1,6 @@
 
 
-import createAppRoutes from "./app/routes";
+import createAppRoutesComponent from "./app/routes";
 import createClient from "./client";
 import createStore from "./store";
 import graphQLClient from "./graphql/client";
@@ -21,7 +21,7 @@ const createServer = isServer ? eval("require")("./server").default : null;
 
 
 export {
-    createAppRoutes,
+    createAppRoutesComponent,
     createClient,
     createServer,
     createStore,

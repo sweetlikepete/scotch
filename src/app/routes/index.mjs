@@ -1,5 +1,12 @@
 
 
+import React from "react";
+
+import {
+    Route,
+    Switch
+} from "react-router-dom";
+
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { frontloadConnect } from "react-frontload";
@@ -33,28 +40,42 @@ const connectRoute = (mod) => {
 
 };
 
-const createAppRoutes = ({ component, loading, routes, webpack }) => routes.map((route) => ({
-    component: loadable({
-        loader: () => new Promise((resolve) => {
+const createAppRoutes = ({ component, loading, routes, webpack }) => {
 
-            (route.component || component)(route.id).then((mod) => {
+    const routeMappings = routes.map((route) => ({
+        component: loadable({
+            loader: () => new Promise((resolve) => {
 
-                resolve(connectRoute(mod));
+                (route.component || component)(route.id).then((mod) => {
 
-            }).catch((err) => {
+                    resolve(connectRoute(mod));
 
-                console.log(err);
+                }).catch((err) => {
 
-            });
+                    console.log(err);
 
+                });
+
+            }),
+            loading: route.loading || loading,
+            modules: [`./${ route.id }/`],
+            webpack: () => webpack(route.id)
         }),
-        loading: route.loading || loading,
-        modules: [`./${ route.id }/`],
-        webpack: () => webpack(route.id)
-    }),
-    exact: route.exact !== false,
-    path: route.path
-}));
+        exact: route.exact !== false,
+        path: route.path
+    }));
+
+    return (props) => {
+
+        return (
+            <Switch>
+                { routeMappings.map((route) => <Route { ...route } key={ route.path } req={ props.req } />) }
+            </Switch>
+        );
+
+    };
+
+};
 
 
 export {

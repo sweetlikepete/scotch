@@ -121,9 +121,13 @@ const createServer = function({
      * Listen for unhandled promise rejections and log the errors. If this isn't
      * done, it's pretty impossible to track these errors down.
      */
-    process.on("unhandledRejection", (reason, rejection) => {
+    process.on("unhandledRejection", (reason, promise) => {
 
-        logger.error(`Unhandled Rejection at: ${ rejection }\nreason:\n${ reason }\n`);
+        logger.error(`Unhandled Rejection at: ${ promise }\nreason:\n${ reason }\n`);
+
+        if(local){
+            console.error(reason);
+        }
 
     });
 

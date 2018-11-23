@@ -73,7 +73,7 @@ const generateRouter = ({
                 <Provider store={ store }>
                     <StaticRouter context={ context } location={ req.originalUrl }>
                         <Frontload isServer>
-                            <App />
+                            <App req={ req } res={ res } />
                         </Frontload>
                     </StaticRouter>
                 </Provider>
