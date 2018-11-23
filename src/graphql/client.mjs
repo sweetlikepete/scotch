@@ -1,6 +1,7 @@
 
 
 import gclient from "graphql-client";
+import generateSchema from "./schema";
 import gql from "graphql";
 
 
@@ -19,18 +20,22 @@ const gqlError = (err) => {
 class GraphqlClient{
 
     constructor({
+        authorized = (req) => !req,
         endpoint = "/graphql/",
         host,
+        mutations,
+        queries,
         req,
-        res,
-        schema = () => null
+        res
     }){
 
+        this.authorized = authorized;
         this.endpoint = endpoint;
         this.host = host;
+        this.mutations = mutations;
+        this.queries = queries;
         this.req = req;
         this.res = res;
-        this.schema = schema(req);
 
     }
 
@@ -66,7 +71,11 @@ class GraphqlClient{
                         req: this.req,
                         res: this.res
                     },
-                    schema: this.schema,
+                    schema: generateSchema({
+                        authorized: this.authorized(this.req),
+                        mutations: this.mutations,
+                        queries: this.queries
+                    }),
                     source,
                     variableValues: variables
                 });

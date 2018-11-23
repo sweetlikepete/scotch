@@ -3,6 +3,8 @@
 import createAppRoutes from "./app/routes";
 import createClient from "./client";
 import createStore from "./store";
+import graphQLClient from "./graphql/client";
+import graphQLTypes from "./graphql/types";
 import logger from "./logger";
 import RouteComponent from "./app/route";
 
@@ -23,6 +25,8 @@ export {
     createClient,
     createServer,
     createStore,
+    graphQLClient,
+    graphQLTypes,
     logger,
     RouteComponent
 };

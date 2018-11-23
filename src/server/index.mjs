@@ -15,6 +15,11 @@ const createServer = function({
     cacheExpiration = "1y",
     csp,
     cwd = process.cwd(),
+    graphQLAuthorized,
+    graphQLEndpoint = "/graphql/",
+    graphQLHost,
+    graphQLMutations,
+    graphQLQueries,
     hostname,
     jwtSecret,
     // This isn't a magic number, it's the max age of the jwt cookie - we'll use it later
@@ -93,6 +98,15 @@ const createServer = function({
 
     // Add the request logger here so it skips static file requests.
     app.use(middleware.logger());
+
+    // Add the graphql router
+    app.use(routers.graphql({
+        authorized: graphQLAuthorized,
+        endpoint: graphQLEndpoint,
+        host: graphQLHost,
+        mutations: graphQLMutations,
+        queries: graphQLQueries
+    }));
 
     // Add app router
     app.use(routers.app({
