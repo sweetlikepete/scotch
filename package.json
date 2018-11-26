@@ -59,13 +59,14 @@
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "source-map-support": "^0.5.9",
+    "webp-converter": "^2.1.6",
     "winston": "^3.1.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.5",
-    "@newsteam/brick": "^1.1.31",
+    "@newsteam/brick": "^1.1.32",
     "@types/es6-promise": "^3.3.0",
-    "@types/react-loadable": "^5.4.1",
+    "@types/react-loadable": "^5.4.2",
     "@types/react-redux": "^6.0.10",
     "gulp": "^4.0.0",
     "renamer": "^1.1.0"

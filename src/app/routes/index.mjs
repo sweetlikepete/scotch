@@ -1,7 +1,5 @@
 
 
-import React from "react";
-
 import {
     Route,
     Switch
@@ -11,6 +9,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { frontloadConnect } from "react-frontload";
 import loadable from "react-loadable";
+import React from "react";
 import { setRouteData } from "../../store/reducers/routes";
 
 
@@ -59,17 +58,41 @@ const createAppRoutes = ({ component, loading, routes, webpack }) => {
             }),
             loading: route.loading || loading,
             modules: [`./${ route.id }/`],
+            render(Component, props){
+                return <Component { ...props } />;
+            },
             webpack: () => webpack(route.id)
         }),
         exact: route.exact !== false,
         path: route.path
     }));
 
-    return (props) => {
+    // There is only one export in this file and it's a function that generates this component
+    // eslint-disable-next-line react/no-multi-comp
+    return function switchComponent(props){
 
         return (
             <Switch>
-                { routeMappings.map((route) => <Route { ...route } key={ route.path } req={ props.req } />) }
+                { routeMappings.map((route) => {
+
+                    const Component = route.component;
+
+                    return (
+                        <Route
+                            exact={ route.exact }
+                            key={ route.path }
+                            path={ route.path }
+
+                            /*
+                             * We're going to let this one slide for now, because we need to override
+                             * the render method and I can't think of how to do this without a function
+                             */
+                            // eslint-disable-next-line react/jsx-no-bind
+                            render={ (prps) => <Component { ...prps } { ...props } /> }
+                        />
+                    );
+
+                }) }
             </Switch>
         );
 

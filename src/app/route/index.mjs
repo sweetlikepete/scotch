@@ -6,12 +6,6 @@ import React from "react";
 
 export default class RouteComponent extends React.Component{
 
-    constructor(props){
-
-        super(props);
-
-    }
-
     static data(){
 
         return {};
