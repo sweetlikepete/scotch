@@ -1,13 +1,14 @@
 
 
-import createAppRoutesComponent from "./app/routes";
+import Router from "./app/router";
 import createClient from "./client";
+import createRouter from "./app/router";
 import createStore from "./store";
 import GraphqlClient from "./graphql/client";
 import graphQLTypes from "./graphql/types";
 import logger from "./logger";
 import path from "path";
-import RouteComponent from "./app/route";
+import Route from "./app/route";
 
 
 const isServer = !(
@@ -44,12 +45,13 @@ const aliases = {
 
 export {
     aliases,
-    createAppRoutesComponent,
     createClient,
+    createRouter,
     createServer,
     createStore,
     GraphqlClient,
     graphQLTypes,
     logger,
-    RouteComponent
+    Route,
+    Router
 };

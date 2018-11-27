@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet";
 import React from "react";
 
 
-export default class RouteComponent extends React.Component{
+export default class Route extends React.Component{
 
     static data(){
 
@@ -51,11 +51,7 @@ export default class RouteComponent extends React.Component{
 
     render(){
 
-        console.log("render call");
-
         if(this.props.data){
-
-            console.log("render call with data");
 
             return (
                 <div>

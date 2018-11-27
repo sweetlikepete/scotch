@@ -39,7 +39,7 @@ const connectRoute = (mod) => {
 
 };
 
-const createAppRoutes = ({ component, loading, routes, webpack }) => {
+const createRouter = ({ component, loading, routes, webpack }) => {
 
     const routeMappings = routes.map((route) => ({
         component: loadable({
@@ -102,5 +102,5 @@ const createAppRoutes = ({ component, loading, routes, webpack }) => {
 
 
 export {
-    createAppRoutes as default
+    createRouter as default
 };
