@@ -1,5 +1,6 @@
 
 
+import GraphqlClient from "../../graphql/client";
 import { Helmet } from "react-helmet";
 import React from "react";
 
@@ -50,7 +51,11 @@ export default class RouteComponent extends React.Component{
 
     render(){
 
+        console.log("render call");
+
         if(this.props.data){
+
+            console.log("render call with data");
 
             return (
                 <div>
