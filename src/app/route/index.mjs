@@ -1,68 +1,43 @@
 
 
-import GraphqlClient from "../../graphql/client";
-import { Helmet } from "react-helmet";
+import loadable from "react-loadable";
 import React from "react";
 
 
 export default class Route extends React.Component{
 
-    static data(){
+    static constructor(){
 
-        return {};
+        this.page = loadable({
+            loader: () => new Promise((resolve) => {
 
-    }
+                this.loader(this.id).then((mod) => {
 
-    shouldComponentUpdate(){
+                    resolve(mod.default);
 
-        if(this.props.data){
+                }).catch((err) => {
 
-            return false;
+                    console.log(err);
 
-        }
+                });
 
-        return true;
-
-    }
-
-    content(){
-
-        return (
-            <div>Empty page</div>
-        );
+            }),
+            loading: this.loading,
+            modules: this.modules(this.id),
+            render: this.render
+        });
 
     }
 
-    meta(){
+    static exact = true;
 
-        return (
-            <Helmet>
-                <title>Empty Title</title>
-            </Helmet>
-        );
+    static render = (Page, props) => <Page { ...props } />;
 
-    }
+    render(props){
 
-    loading(){
+        const Page = this.constructor.page;
 
-        return <h1>Loading...</h1>;
-
-    }
-
-    render(){
-
-        if(this.props.data){
-
-            return (
-                <div>
-                    { this.meta() }
-                    { this.content() }
-                </div>
-            );
-
-        }
-
-        return this.loading();
+        return <Page { ...props } />;
 
     }
 

@@ -25,20 +25,9 @@ const routeReducer = function(state = {}, action){
 
 };
 
-const setRouteData = (data, url) => (dispatch) => {
-
-    dispatch({
-        data,
-        type: SET_ROUTE_DATA,
-        url
-    });
-
-};
-
 
 export {
     routeReducer as default,
-    setRouteData,
     SET_ROUTE_DATA
 };
 

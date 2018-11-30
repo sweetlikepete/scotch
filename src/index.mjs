@@ -1,6 +1,5 @@
 
 
-import Router from "./app/router";
 import createClient from "./client";
 import createRouter from "./app/router";
 import createStore from "./store";
@@ -9,6 +8,7 @@ import graphQLTypes from "./graphql/types";
 import logger from "./logger";
 import path from "path";
 import Route from "./app/route";
+import Router from "./app/router";
 
 
 const isServer = !(
