@@ -1,7 +1,6 @@
 
 
 import createClient from "./client";
-import createRouter from "./app/router";
 import createStore from "./store";
 import GraphqlClient from "./graphql/client";
 import graphQLTypes from "./graphql/types";
@@ -46,7 +45,6 @@ const aliases = {
 export {
     aliases,
     createClient,
-    createRouter,
     createServer,
     createStore,
     GraphqlClient,

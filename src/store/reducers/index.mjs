@@ -11,8 +11,8 @@ const reducer = ({
     reducers = {}
 }) => combineReducers({
     ...reducers,
-    router: connectRouter(history),
     global,
+    router: connectRouter(history),
     routes
 });
 

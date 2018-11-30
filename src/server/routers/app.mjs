@@ -16,7 +16,6 @@ import path from "path";
 import { Provider } from "react-redux";
 import React from "react";
 import { renderToString } from "react-dom/server";
-import { SET_GLOBAL_DATA } from "../../store/reducers/global";
 import slash from "express-slash";
 import { StaticRouter } from "react-router-dom";
 
@@ -80,8 +79,6 @@ const generateRouter = ({
                 </Provider>
             </Loadable.Capture>
         ));
-
-        console.log(["modules", modules]);
 
         const helmet = Helmet.renderStatic();
 
