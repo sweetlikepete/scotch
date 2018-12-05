@@ -31,7 +31,9 @@ export default class Router extends React.Component{
                          * the render method and I can't think of how to do this without a function
                          */
                         // eslint-disable-next-line react/jsx-no-bind
-                        render={ (p) => <Component { ...p } req={ this.props.req } res={ this.props.res } /> }
+                        render={ (props) => <Component { ...props } req={ this.props.req } res={ this.props.res } /> }
+                        sensitive={ Component.sensitive }
+                        strict={ Component.strict }
                     />
                 )) }
             </Switch>

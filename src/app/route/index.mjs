@@ -1,7 +1,12 @@
 
 
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import equal from "deep-equal";
+import { frontloadConnect } from "react-frontload";
 import loadable from "react-loadable";
 import React from "react";
+import { setLoaded } from "../../store/reducers/loaded";
 
 
 export default class Route extends React.Component{
@@ -13,13 +18,36 @@ export default class Route extends React.Component{
 
                 this.loader(this.id).then((mod) => {
 
-                    resolve(mod.default);
+                    const frontload = this.load ? frontloadConnect(
+                        async (props) => {
 
-                }).catch((err) => {
+                            await this.load();
 
-                    console.log(err);
+                            console.log(props);
 
-                });
+                            props.setLoaded(props.match.url);
+
+                        },
+                        {
+                            onMount: true,
+                            onUpdate: false
+                        }
+                    )(mod.default) : mod.default;
+
+                    const Component = connect(
+                        (state, props) => ({
+                            ...this.mapStateToProps ? this.mapStateToProps(state, props) : {},
+                            loaded: state.loaded[props.match.url] || false
+                        }),
+                        (dispatch) => bindActionCreators({
+                            ...this.actions || {},
+                            setLoaded
+                        }, dispatch)
+                    )(frontload);
+
+                    resolve(Component);
+
+                }).catch(console.log);
 
             }),
             loading: this.loading,
@@ -29,15 +57,42 @@ export default class Route extends React.Component{
 
     }
 
+
     static exact = true;
+
+    static strict = true;
+
+    static sensitive = true;
+
+    static modules = () => {
+
+        throw new Error("static method modules not implemented");
+
+    };
 
     static render = (Page, props) => <Page { ...props } />;
 
-    render(props){
+    static async load(){
+
+        await new Promise((resolve) => {
+
+            resolve();
+
+        });
+
+    }
+
+    shouldComponentUpdate(nextProps){
+
+        return !equal(this.props, nextProps);
+
+    }
+
+    render(){
 
         const Page = this.constructor.page;
 
-        return <Page { ...props } />;
+        return <Page { ...this.props } />;
 
     }
 

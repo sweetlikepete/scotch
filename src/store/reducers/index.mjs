@@ -2,8 +2,7 @@
 
 import { combineReducers } from "redux";
 import { connectRouter } from "connected-react-router";
-import global from "./global";
-import routes from "./routes";
+import loaded from "./loaded";
 
 
 const reducer = ({
@@ -11,9 +10,8 @@ const reducer = ({
     reducers = {}
 }) => combineReducers({
     ...reducers,
-    global,
-    router: connectRouter(history),
-    routes
+    loaded,
+    router: connectRouter(history)
 });
 
 
