@@ -26,7 +26,7 @@
   dependencies:
     "@babel/highlight" "^7.0.0"
 
-"@babel/core@^7.1.2", "@babel/core@^7.1.6", "@babel/core@^7.2.0":
+"@babel/core@^7.1.2", "@babel/core@^7.2.0":
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.2.0.tgz#a4dd3814901998e93340f0086e9867fefa163ada"
   integrity sha512-7pvAdC4B+iKjFFp9Ztj0QgBndJ++qaMeonT185wAqUnhipw8idm9Rv1UMyBuKtYjfl6ORNkgEgcsYLfHX/GpLw==
@@ -263,7 +263,7 @@
     "@babel/helper-remap-async-to-generator" "^7.1.0"
     "@babel/plugin-syntax-async-generators" "^7.2.0"
 
-"@babel/plugin-proposal-class-properties@^7.1.0":
+"@babel/plugin-proposal-class-properties@^7.2.1":
   version "7.2.1"
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-class-properties/-/plugin-proposal-class-properties-7.2.1.tgz#c734a53e0a1ec40fe5c22ee5069d26da3b187d05"
   integrity sha512-/4FKFChkQ2Jgb8lBDsvFX496YTi7UWTetVgS8oJUpX1e/DlaoeEK57At27ug8Hu2zI2g8bzkJ+8k9qrHZRPGPA==
@@ -311,7 +311,7 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.0.0"
 
-"@babel/plugin-syntax-dynamic-import@^7.0.0":
+"@babel/plugin-syntax-dynamic-import@^7.2.0":
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-dynamic-import/-/plugin-syntax-dynamic-import-7.2.0.tgz#69c159ffaf4998122161ad8ebc5e6d1f55df8612"
   integrity sha512-mVxuJ0YroI/h/tbFTPGZR8cv6ai+STMKNBq0f8hFxsxWjl94qqhsb+wXbpNMDPU3cfR1TIsVFzU3nXyZMqyK4w==
@@ -531,7 +531,7 @@
     "@babel/helper-plugin-utils" "^7.0.0"
     "@babel/plugin-syntax-jsx" "^7.2.0"
 
-"@babel/plugin-transform-react-jsx@^7.0.0", "@babel/plugin-transform-react-jsx@^7.1.6":
+"@babel/plugin-transform-react-jsx@^7.0.0", "@babel/plugin-transform-react-jsx@^7.2.0":
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-jsx/-/plugin-transform-react-jsx-7.2.0.tgz#ca36b6561c4d3b45524f8efb6f0fbc9a0d1d622f"
   integrity sha512-h/fZRel5wAfCqcKgq3OhbmYaReo7KkoJBpt8XnvpS7wqaNMqtw5xhxutzcm35iMUWucfAdT/nvGTsWln0JTg2Q==
@@ -593,7 +593,7 @@
     "@babel/helper-regex" "^7.0.0"
     regexpu-core "^4.1.3"
 
-"@babel/preset-env@^7.1.6":
+"@babel/preset-env@^7.2.0":
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/@babel/preset-env/-/preset-env-7.2.0.tgz#a5030e7e4306af5a295dd5d7c78dc5464af3fee2"
   integrity sha512-haGR38j5vOGVeBatrQPr3l0xHbs14505DcM57cbJy48kgMFvvHHoYEhHuRV+7vi559yyAUAVbTWzbK/B/pzJng==
@@ -817,19 +817,19 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@newsteam/brick@^1.1.34":
-  version "1.1.34"
-  resolved "https://registry.yarnpkg.com/@newsteam/brick/-/brick-1.1.34.tgz#efe7c081d0dda2ab8c48474e5886fead37087c7a"
-  integrity sha512-aaNgqs5FGkpHPuMQSXdAD9fPz8uMUIRqhE9sZm8MiLPEX115A2pLhQigRbfqx4v1AhKCDWBlEL50tV3h/Vtq8w==
+"@newsteam/brick@^1.1.35":
+  version "1.1.35"
+  resolved "https://registry.yarnpkg.com/@newsteam/brick/-/brick-1.1.35.tgz#b67c0057c075c1257091a9f85c524bd1ba923f7e"
+  integrity sha512-Oxq0fYrhE9t4yzh8bPvVrQvzKM7QdxnlTKqrHp925Z9k6yjaJfX8fHw/v6IszHto2f7K4WGDizs1mQeOK9tx5w==
   dependencies:
-    "@babel/core" "^7.1.6"
-    "@babel/plugin-proposal-class-properties" "^7.1.0"
-    "@babel/plugin-syntax-dynamic-import" "^7.0.0"
-    "@babel/plugin-transform-react-jsx" "^7.1.6"
-    "@babel/preset-env" "^7.1.6"
+    "@babel/core" "^7.2.0"
+    "@babel/plugin-proposal-class-properties" "^7.2.1"
+    "@babel/plugin-syntax-dynamic-import" "^7.2.0"
+    "@babel/plugin-transform-react-jsx" "^7.2.0"
+    "@babel/preset-env" "^7.2.0"
     "@babel/preset-react" "^7.0.0"
     assets-webpack-plugin "^3.9.7"
-    autoprefixer "^9.3.1"
+    autoprefixer "^9.4.2"
     awesome-typescript-loader "^5.2.1"
     babel-eslint "^10.0.1"
     babel-loader "^8.0.4"
@@ -867,7 +867,7 @@
     gulp-watch "^5.0.1"
     gulp-zopfli-green "^3.0.1"
     hard-source-webpack-plugin "^0.12.0"
-    image-webpack-loader "^4.5.0"
+    image-webpack-loader "^4.6.0"
     merge "^1.2.1"
     mini-css-extract-plugin "^0.4.5"
     node-object-hash "^1.4.1"
@@ -896,9 +896,9 @@
     ts-loader "^5.3.1"
     tslint "^5.11.0"
     typescript "^3.2.1"
-    webpack "^4.26.1"
+    webpack "^4.27.0"
     webpack-bundle-analyzer "^3.0.3"
-    webpack-format-messages "^2.0.4"
+    webpack-format-messages "^2.0.5"
     webpack-node-externals "^1.7.2"
 
 "@nodelib/fs.stat@^1.1.2":
@@ -1753,7 +1753,7 @@ atob@^2.1.1:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
-autoprefixer@^9.0.0, autoprefixer@^9.3.1:
+autoprefixer@^9.0.0, autoprefixer@^9.4.2:
   version "9.4.2"
   resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-9.4.2.tgz#0234d20900684fc4bfb67926493deb68384067f5"
   integrity sha512-tYQYJvZvqlJCzF+BLC//uAcdT/Yy4ik9bwZRXr/EehUJ/bjjpTthsWTy8dpowdoIE1sLCDf1ch4Eb2cOSzZC9w==
@@ -3016,9 +3016,9 @@ copy-props@^2.0.1:
     is-plain-object "^2.0.1"
 
 core-js@^2.0.0, core-js@^2.4.0:
-  version "2.5.7"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.7.tgz#f972608ff0cead68b841a16a932d0b183791814e"
-  integrity sha512-RszJCAxg/PP6uzXVXL6BsxSXx/B05oJAQ2vkJRjyjrEcNVycaqOmNb5OTxZPE3xa5gwZduqza6L9JOCenh/Ecw==
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.0.tgz#1e30793e9ee5782b307e37ffa22da0eacddd84d4"
+  integrity sha512-kLRC6ncVpuEW/1kwrOXYX6KQASCVtrh1gQr/UiaVgFlf9WE5Vp+lNe5+h3LuMr5PAucWnnEXwH0nQHRH/gpGtw==
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
@@ -6013,7 +6013,7 @@ iltorb@^2.0.0:
     prebuild-install "^5.2.1"
     which-pm-runs "^1.0.0"
 
-image-webpack-loader@^4.5.0:
+image-webpack-loader@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/image-webpack-loader/-/image-webpack-loader-4.6.0.tgz#c38eb723c8a50cca46298654a74d5a4f26f9a501"
   integrity sha512-VXs3iNThLW8JzIytrCXI6DWATaGU2kj9G5Vzq5xnyyfhznG45DfIa33WnSjYC4epzjLAs/W5lA38Va8qn8Apdw==
@@ -9377,6 +9377,11 @@ preact-compat@^3.18.4:
     prop-types "^15.6.2"
     standalone-react-addons-pure-render-mixin "^0.1.1"
 
+preact-redux@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/preact-redux/-/preact-redux-2.0.3.tgz#960a535c322643cd35998f33f0c2e67bc1e7eaab"
+  integrity sha1-lgpTXDImQ801mY8z8MLme8Hn6qs=
+
 preact-render-to-string@^3.8.2:
   version "3.8.2"
   resolved "https://registry.yarnpkg.com/preact-render-to-string/-/preact-render-to-string-3.8.2.tgz#bd72964d705a57da3a9e72098acaa073dd3ceff9"
@@ -9755,7 +9760,7 @@ react-loadable@^5.5.0:
   dependencies:
     prop-types "^15.5.0"
 
-react-redux@^6.0.0:
+react-redux@6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-6.0.0.tgz#09e86eeed5febb98e9442458ad2970c8f1a173ef"
   integrity sha512-EmbC3uLl60pw2VqSSkj6HpZ6jTk12RMrwXMBdYtM6niq0MdEaRq9KYCwpJflkOZj349BLGQm1MI/JO1W96kLWQ==
@@ -10007,14 +10012,14 @@ regexpu-core@^1.0.0:
     regjsparser "^0.1.4"
 
 regexpu-core@^4.1.3, regexpu-core@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/regexpu-core/-/regexpu-core-4.2.0.tgz#a3744fa03806cffe146dea4421a3e73bdcc47b1d"
-  integrity sha512-Z835VSnJJ46CNBttalHD/dB+Sj2ezmY6Xp38npwU87peK6mqOzOpV8eYktdkLTEkzzD+JsTcxd84ozd8I14+rw==
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/regexpu-core/-/regexpu-core-4.3.0.tgz#256cd550eadea9c9f37933c8a60ca966c8c1bc95"
+  integrity sha512-pniBuFHJMDy9P8jnXGBvfLQsQqzGsZuhT0KezuTWn1vMdJxuhsHauNdIvzMsiORmYPgLbPGwWbq3czCKa5RsWA==
   dependencies:
     regenerate "^1.4.0"
     regenerate-unicode-properties "^7.0.0"
-    regjsgen "^0.4.0"
-    regjsparser "^0.3.0"
+    regjsgen "^0.5.0"
+    regjsparser "^0.6.0"
     unicode-match-property-ecmascript "^1.0.4"
     unicode-match-property-value-ecmascript "^1.0.2"
 
@@ -10038,10 +10043,10 @@ regjsgen@^0.2.0:
   resolved "https://registry.yarnpkg.com/regjsgen/-/regjsgen-0.2.0.tgz#6c016adeac554f75823fe37ac05b92d5a4edb1f7"
   integrity sha1-bAFq3qxVT3WCP+N6wFuS1aTtsfc=
 
-regjsgen@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/regjsgen/-/regjsgen-0.4.0.tgz#c1eb4c89a209263f8717c782591523913ede2561"
-  integrity sha512-X51Lte1gCYUdlwhF28+2YMO0U6WeN0GLpgpA7LK7mbdDnkQYiwvEpmpe0F/cv5L14EbxgrdayAG3JETBv0dbXA==
+regjsgen@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/regjsgen/-/regjsgen-0.5.0.tgz#a7634dc08f89209c2049adda3525711fb97265dd"
+  integrity sha512-RnIrLhrXCX5ow/E5/Mh2O4e/oa1/jW0eaBKTSy3LaCj+M3Bqvm97GWDp2yUtzIs4LEn65zR2yiYGFqb2ApnzDA==
 
 regjsparser@^0.1.4:
   version "0.1.5"
@@ -10050,10 +10055,10 @@ regjsparser@^0.1.4:
   dependencies:
     jsesc "~0.5.0"
 
-regjsparser@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/regjsparser/-/regjsparser-0.3.0.tgz#3c326da7fcfd69fa0d332575a41c8c0cdf588c96"
-  integrity sha512-zza72oZBBHzt64G7DxdqrOo/30bhHkwMUoT0WqfGu98XLd7N+1tsy5MJ96Bk4MD0y74n629RhmrGW6XlnLLwCA==
+regjsparser@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/regjsparser/-/regjsparser-0.6.0.tgz#f1e6ae8b7da2bae96c99399b868cd6c933a2ba9c"
+  integrity sha512-RQ7YyokLiQBomUJuUG8iGVvkgOLxwyZM8k6d3q5SAXpg4r5TZJZigKFvC6PpD+qQ98bCDC5YelPeA3EucDoNeQ==
   dependencies:
     jsesc "~0.5.0"
 
@@ -12229,7 +12234,7 @@ webpack-bundle-analyzer@^3.0.3:
     opener "^1.5.1"
     ws "^6.0.0"
 
-webpack-format-messages@^2.0.4:
+webpack-format-messages@^2.0.5:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/webpack-format-messages/-/webpack-format-messages-2.0.5.tgz#399d0e3b774892ec03a51f09ff5e00e8a25aef18"
   integrity sha512-URo5MWlxsYNFjyKmK5RUjrmr45JBMs/juWPIxOkDU2bcTwCblyn0zTUw+ZWASBJCnJBgWZ4SOeGWFfCBYLarpA==
@@ -12259,7 +12264,7 @@ webpack-sources@^1.0.1, webpack-sources@^1.1.0, webpack-sources@^1.3.0:
     source-list-map "^2.0.0"
     source-map "~0.6.1"
 
-webpack@^4.26.1:
+webpack@^4.27.0:
   version "4.27.0"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.27.0.tgz#1db66f03f0239bf797827f0580f53a41abd4067c"
   integrity sha512-y77EQNIlsB9fUGgpLv/ZzmH+Yd9DgyIF9omX9RFavR5ZFM6HxFm6sqkbBXYxpjbKej9K6hD+Y8qEVg2rWdI2gg==
