@@ -55,12 +55,12 @@ const generateRouter = ({
                 maxAge: cacheExpiration,
                 orderPreference: ["br"],
                 redirect: false,
-                setHeaders: (res, path) => {
+                setHeaders: (res, resPath) => {
 
                     let encoding = null;
 
-                    encoding = path.endsWith(".br") ? "br" : encoding;
-                    encoding = path.endsWith(".gz") ? "gzip" : encoding;
+                    encoding = resPath.endsWith(".br") ? "br" : encoding;
+                    encoding = resPath.endsWith(".gz") ? "gzip" : encoding;
 
                     if(encoding){
                         res.set("X-Content-Encoding-Test", `wtf: ${ encoding }`);
