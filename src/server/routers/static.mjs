@@ -1,7 +1,7 @@
 
 
 import express from "express";
-// Import expressStaticGzip from "express-static-gzip";
+import expressStaticGzip from "express-static-gzip";
 import path from "path";
 
 
@@ -39,54 +39,31 @@ const generateRouter = ({
 
     map.forEach((item) => {
 
-        router.use(item.pub, express.static(path.join(cwd, item.src), {
-            etag: true,
-            maxAge: cacheExpiration,
-            setHeaders: (res) => {
+        const single = item.src.indexOf(".") > 0;
 
-                res.set("X-Content-Type-Options", "nosniff");
-                res.set("X-Powered-By", xPoweredBy);
+        if(single){
 
-            }
-        }));
+            router.use(item.pub, express.static(path.join(cwd, item.src)));
 
-        /*
-         * Const single = item.src.indexOf(".") > 0;
-         *
-         * if(single){
-         *
-         * router.use(item.pub, express.static(path.join(cwd, item.src)));
-         *
-         * }else{
-         *
-         * router.use(item.pub, expressStaticGzip(path.join(cwd, item.src), {
-         * enableBrotli: true,
-         * etag: true,
-         * fallthrough: false,
-         * index: false,
-         * maxAge: cacheExpiration,
-         * orderPreference: ["br"],
-         * redirect: false,
-         * setHeaders: (res, resPath) => {
-         *
-         * let encoding = null;
-         *
-         * encoding = resPath.endsWith(".br") ? "br" : encoding;
-         * encoding = resPath.endsWith(".gz") ? "gzip" : encoding;
-         *
-         * if(encoding){
-         * res.set("X-Content-Encoding-Test", `wtf: ${ encoding }`);
-         * res.set("Content-Encoding", encoding);
-         * }
-         *
-         * res.set("X-Content-Type-Options", "nosniff");
-         * res.set("X-Powered-By", xPoweredBy);
-         *
-         * }
-         * }));
-         *
-         *}
-         */
+        }else{
+
+            router.use(item.pub, expressStaticGzip(path.join(cwd, item.src), {
+                enableBrotli: true,
+                etag: true,
+                fallthrough: false,
+                index: false,
+                maxAge: cacheExpiration,
+                orderPreference: ["br"],
+                redirect: false,
+                setHeaders: (res) => {
+
+                    res.set("X-Content-Type-Options", "nosniff");
+                    res.set("X-Powered-By", xPoweredBy);
+
+                }
+            }));
+
+        }
 
     });
 
