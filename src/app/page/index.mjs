@@ -39,8 +39,6 @@ export default class Page extends React.Component{
 
     render(){
 
-        console.log(["base props", this.props]);
-
         if(this.props.loaded === true){
 
             return (

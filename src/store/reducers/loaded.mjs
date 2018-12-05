@@ -8,8 +8,6 @@ const loadedReducer = function(state = {}, action){
 
         case SET_LOADED :{
 
-            console.log("WTF");
-
             return {
                 ...state,
                 [action.url]: action.loaded || true

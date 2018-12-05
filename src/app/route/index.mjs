@@ -16,23 +16,9 @@ export default class Route extends React.Component{
         this.page = loadable({
             loader: () => new Promise((resolve) => {
 
+                console.log("loader call");
+
                 this.loader(this.id).then((mod) => {
-
-                    const frontload = this.load ? frontloadConnect(
-                        async (props) => {
-
-                            await this.load();
-
-                            console.log(props);
-
-                            props.setLoaded(props.match.url);
-
-                        },
-                        {
-                            onMount: true,
-                            onUpdate: false
-                        }
-                    )(mod.default) : mod.default;
 
                     const Component = connect(
                         (state, props) => ({
@@ -43,7 +29,7 @@ export default class Route extends React.Component{
                             ...this.actions || {},
                             setLoaded
                         }, dispatch)
-                    )(frontload);
+                    )(mod.default);
 
                     resolve(Component);
 
@@ -90,7 +76,32 @@ export default class Route extends React.Component{
 
     render(){
 
-        const Page = this.constructor.page;
+        console.log("render call");
+
+        const Page = connect(
+            (state, props) => ({
+                ...this.mapStateToProps ? this.mapStateToProps(state, props) : {},
+                loaded: state.loaded[props.match.url] || false
+            }),
+            (dispatch) => bindActionCreators({
+                ...this.actions || {},
+                setLoaded
+            }, dispatch)
+        )(this.constructor.load ? frontloadConnect(
+            async (props) => {
+
+                console.log("frontload call");
+
+                await this.constructor.load();
+
+                props.setLoaded(props.match.url);
+
+            },
+            {
+                onMount: true,
+                onUpdate: false
+            }
+        )(this.constructor.page) : this.constructor.page);
 
         return <Page { ...this.props } />;
 
