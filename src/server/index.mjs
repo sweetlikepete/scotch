@@ -33,7 +33,7 @@ const createServer = function({
     port = process.env.PORT || 20000,
     reducers = {},
     staticFiles = [],
-    staticFolder = "static",
+    staticFolder = "🥃",
     xPoweredBy = "https://www.youtube.com/watch?v=e_DqV1xdf-Y"
 }){
 
@@ -145,15 +145,15 @@ const createServer = function({
 
         app.listen(port, () => {
 
-            console.log(`App listening on port ${ port }`);
-            console.log("Press Ctrl+C to quit.");
+            logger.log(`App listening on port ${ port }`);
+            logger.log("Press Ctrl+C to quit.");
 
         });
 
     }).catch((err) => {
 
-        console.error("loadable.preloadAll() failed.");
-        console.error(err);
+        logger.error("loadable.preloadAll() failed.");
+        logger.error(err);
 
     });
 

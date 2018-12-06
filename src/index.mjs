@@ -5,7 +5,7 @@ import createStore from "./store";
 import GraphqlClient from "./graphql/client";
 import graphQLTypes from "./graphql/types";
 import logger from "./logger";
-import Page from "./app/page";
+import Page from "./app/route/page";
 import Route from "./app/route";
 import Router from "./app/router";
 

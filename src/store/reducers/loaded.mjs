@@ -8,10 +8,7 @@ const loadedReducer = function(state = {}, action){
 
         case SET_LOADED :{
 
-            return {
-                ...state,
-                [action.url]: action.loaded || true
-            };
+            return action.url;
 
         }
 
@@ -28,7 +25,6 @@ const loadedReducer = function(state = {}, action){
 const setLoaded = (url) => (dispatch) => {
 
     dispatch({
-        loaded: true,
         type: SET_LOADED,
         url
     });

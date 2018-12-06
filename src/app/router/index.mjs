@@ -16,6 +16,35 @@ export default class Router extends React.Component{
 
     }
 
+    componentDidMount(){
+
+        this.preloadRoutes();
+
+    }
+
+    preloadRoutes(){
+
+        const initialDelay = 1000;
+        const preloadDelay = 500;
+
+        setTimeout(() => {
+
+            const routes = [...this.props.routes];
+
+            const preload = async () => {
+
+                await routes.pop().page.preload();
+
+                await setTimeout(preload, preloadDelay);
+
+            };
+
+            preload();
+
+        }, initialDelay);
+
+    }
+
     render(){
 
         return (

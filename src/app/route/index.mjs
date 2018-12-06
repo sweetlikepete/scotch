@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import equal from "deep-equal";
 import { frontloadConnect } from "react-frontload";
 import loadable from "react-loadable";
+import logger from "../../logger";
 import React from "react";
 import { setLoaded } from "../../store/reducers/loaded";
 
@@ -16,24 +17,11 @@ export default class Route extends React.Component{
         this.page = loadable({
             loader: () => new Promise((resolve) => {
 
-                console.log("loader call");
-
                 this.loader(this.id).then((mod) => {
 
-                    const Component = connect(
-                        (state, props) => ({
-                            ...this.mapStateToProps ? this.mapStateToProps(state, props) : {},
-                            loaded: state.loaded[props.match.url] || false
-                        }),
-                        (dispatch) => bindActionCreators({
-                            ...this.actions || {},
-                            setLoaded
-                        }, dispatch)
-                    )(mod.default);
+                    resolve(mod.default);
 
-                    resolve(Component);
-
-                }).catch(console.log);
+                }).catch(logger.error);
 
             }),
             loading: this.loading,
@@ -42,7 +30,6 @@ export default class Route extends React.Component{
         });
 
     }
-
 
     static exact = true;
 
@@ -58,16 +45,6 @@ export default class Route extends React.Component{
 
     static render = (Page, props) => <Page { ...props } />;
 
-    static async load(){
-
-        await new Promise((resolve) => {
-
-            resolve();
-
-        });
-
-    }
-
     shouldComponentUpdate(nextProps){
 
         return !equal(this.props, nextProps);
@@ -76,32 +53,50 @@ export default class Route extends React.Component{
 
     render(){
 
-        console.log("render call");
-
         const Page = connect(
             (state, props) => ({
                 ...this.mapStateToProps ? this.mapStateToProps(state, props) : {},
-                loaded: state.loaded[props.match.url] || false
+                loaded: state.loaded === props.match.url
             }),
             (dispatch) => bindActionCreators({
                 ...this.actions || {},
                 setLoaded
             }, dispatch)
-        )(this.constructor.load ? frontloadConnect(
+        )(frontloadConnect(
             async (props) => {
 
-                console.log("frontload call");
+                if(!props.loaded){
 
-                await this.constructor.load();
+                    if(this.load){
 
-                props.setLoaded(props.match.url);
+                        await this.load();
+
+                    }
+
+                    /*
+                     * If you're on the client and the current url is the same as
+                     * the url the request started with (no navigation has occurred)
+                     * set the current loaded page url. This prevents the completion of
+                     * a load request from one url blocking the load state of another
+                     * page load that happened during the first page load.
+                     */
+                    if(
+                        typeof window === "undefined" ||
+                        window.location.pathname === props.match.url
+                    ){
+
+                        props.setLoaded(props.match.url);
+
+                    }
+
+                }
 
             },
             {
                 onMount: true,
                 onUpdate: false
             }
-        )(this.constructor.page) : this.constructor.page);
+        )(this.constructor.page));
 
         return <Page { ...this.props } />;
 

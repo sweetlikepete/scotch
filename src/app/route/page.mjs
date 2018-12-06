@@ -23,7 +23,14 @@ export default class Page extends React.Component{
 
     loading(){
 
-        return <h1>Loading...</h1>;
+        return (
+            <div>
+                <Helmet>
+                    <title>Loading...</title>
+                </Helmet>
+                <h1>Loading...</h1>
+            </div>
+        );
 
     }
 
