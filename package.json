@@ -1,6 +1,6 @@
 {
   "name": "@newsteam/scotch",
-  "version": "1.0.25",
+  "version": "1.0.26",
   "description": "",
   "main": "lib/index",
   "sideEffects": false,
