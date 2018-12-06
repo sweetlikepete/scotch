@@ -64,8 +64,7 @@ const createServer = function({
         cacheExpiration,
         cwd,
         staticFiles,
-        staticFolder,
-        xPoweredBy
+        staticFolder
     }));
 
     // Add the /manifest.json router if the manifest was configured
