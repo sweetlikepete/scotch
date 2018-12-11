@@ -5,8 +5,9 @@
   "main": "lib/index",
   "sideEffects": false,
   "scripts": {
-    "build": "rm -rf lib && npm run build:js",
+    "build": "rm -rf lib && npm run build:js && npm run build:scss",
     "build:js": "npm run build:js:module && npm run build:js:common",
+    "build:scss": "copy src/app/**/*.scss lib/app",
     "build:ts": "npm run build:ts:module && npm run build:ts:common",
     "build:ts:common": "tsc",
     "build:ts:module": "tsc --module 'ES6' && renamer --find js --replace mjs lib/**",
@@ -34,7 +35,7 @@
     "@google-cloud/logging-winston": "^0.10.2",
     "body-parser": "^1.18.3",
     "compression": "^1.7.3",
-    "connected-react-router": "^5.0.1",
+    "connected-react-router": "^6.0.0",
     "cookie-parser": "^1.4.3",
     "deep-equal": "^1.0.1",
     "express": "^4.16.4",
@@ -48,7 +49,7 @@
     "helmet": "^3.15.0",
     "history": "^4.7.2",
     "merge": "^1.2.1",
-    "preact": "^8.3.1",
+    "preact": "^8.4.2",
     "preact-redux": "^2.0.3",
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
@@ -70,7 +71,8 @@
     "@newsteam/brick": "^1.1.36",
     "@types/es6-promise": "^3.3.0",
     "@types/react-loadable": "^5.4.2",
-    "@types/react-redux": "^6.0.10",
+    "@types/react-redux": "^6.0.11",
+    "copy": "^0.3.2",
     "gulp": "^4.0.0",
     "renamer": "^1.1.0"
   }

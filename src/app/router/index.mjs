@@ -33,9 +33,13 @@ export default class Router extends React.Component{
 
             const preload = async () => {
 
-                await routes.pop().page.preload();
+                if(routes.length > 0){
 
-                await setTimeout(preload, preloadDelay);
+                    await routes.pop().page.preload();
+
+                    await setTimeout(preload, preloadDelay);
+
+                }
 
             };
 
