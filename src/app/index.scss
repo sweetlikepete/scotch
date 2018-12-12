@@ -1,0 +1,419 @@
+
+
+$media-query-hd:
+    only screen and (-webkit-min-device-pixel-ratio:1.25),
+    only screen and (min--moz-device-pixel-ratio:1.25),
+    only screen and (-moz-min-device-pixel-ratio:1.25),
+    only screen and (-o-min-device-pixel-ratio:1.25/1),
+    only screen and (-ms-min-device-pixel-ratio:1.25),
+    only screen and (min-device-pixel-ratio:1.25),
+    only screen and (min-resolution:1.25dppx),
+    only screen and (min-resolution:120dpi);
+
+@function get($args, $key, $default){
+
+    @return if(map-has-key(keywords($args), $key), map-get(keywords($args), $key), $default);
+
+}
+
+@mixin scotch($args...){
+
+    $background: get($args, "background", #fff);
+    $color: get($args, "color", #444);
+    $font-family: get($args, "font-family", #{"Lucida Grande", "Lucida Sans Unicode", Arial, Verdana, sans-serif});
+    $font-family-hd: get($args, "font-family-hd", #{"Helvetica Neue", Helvetica, Arial, sans-serif});
+    $font-size: get($args, "font-size", 15px);
+    $font-weight: get($args, "font-weight", normal);
+
+    $heading-color: get($args, "heading-color", #333);
+    $heading-font-weight: get($args, "heading-font-weight", normal);
+
+    $h1-font-size: get($args, "h1-font-size", 36px);
+    $h2-font-size: get($args, "h2-font-size", 24px);
+    $h3-font-size: get($args, "h3-font-size", 17px);
+    $h4-font-size: get($args, "h4-font-size", 15px);
+    $h5-font-size: get($args, "h5-font-size", 14px);
+    $h6-font-size: get($args, "h6-font-size", 12px);
+
+    $highlight-background: get($args, "highlight-background", rgba(239, 201, 23, .99));
+    $highlight-color: get($args, "highlight-color", #555);
+    $highlight-shadow: get($args, "highlight-shadow", none);
+
+    $input-background: get($args, "input-background", #fff);
+    $input-color: get($args, "input-color", #444);
+    $input-font-size: get($args, "input-font-size", 14px);
+    $input-border-color: get($args, "input-border-color", rgba(185, 193, 199, .5));
+    $input-border-color-focus: get($args, "input-border-color-focus", #19a9f1);
+    $input-button-background: get($args, "input-button-background", #19a9f1);
+    $input-button-background-submit: get($args, "input-button-background-submit", #2cc03b);
+    $input-button-color: get($args, "input-button-color", #fff);
+
+    $link-color: get($args, "link-color", #2479c1);
+    $link-color-disabled: get($args, "link-color-disabled", #2479c1);
+    $link-color-hover: get($args, "link-color-hover", #ccc);
+
+    $range-track-color: get($args, "range-track-color", rgba(0, 0, 0, .3));
+    $range-track-shadow: get($args, "range-track-shadow", none);
+    $range-track-border: get($args, "range-track-border", none);
+    $range-track-radius: get($args, "range-track-radius", 3px);
+    $range-track-height: get($args, "range-track-height", 3px);
+    $range-thumb-color: get($args, "range-thumb-color", #fff);
+    $range-thumb-shadow: get($args, "range-thumb-shadow", 0 0 2px rgba(0, 0, 0, .7));
+    $range-thumb-border: get($args, "range-thumb-border", none);
+    $range-thumb-radius: get($args, "range-thumb-radius", 50%);
+    $range-thumb-width: get($args, "range-thumb-width", 13px);
+    $range-thumb-height: get($args, "range-thumb-height", 13px);
+    $range-thumb-offset: get($args, "range-thumb-offset", -5px);
+
+    *,
+    *::before,
+    *::after{
+
+        box-sizing: inherit;
+
+    }
+
+    *:focus{
+
+        outline: none;
+
+    }
+
+    html{
+
+        box-sizing: border-box;
+        text-size-adjust: 100%;
+
+    }
+
+    body{
+
+        @include font-smooth;
+        background: $background;
+        box-sizing: border-box;
+        color: $color;
+        font-family: $font-family;
+        font-size: $font-size;
+        font-weight: $font-weight;
+        height: 100vh;
+        margin: 0;
+        overflow: visible;
+        overflow-x: hidden;
+        padding: 0;
+        position: relative;
+        text-rendering: optimizeLegibility;
+
+        @media #{ $media-query-hd }{
+
+            font-family: $font-family-hd;
+
+        }
+
+        *::selection{
+
+            background: $highlight-background;
+            color: $highlight-color;
+            text-shadow: $highlight-shadow;
+
+        }
+
+    }
+
+    img{
+
+        user-select: none;
+
+    }
+
+    a{
+
+        color: $link-color;
+        cursor: pointer;
+        outline: none;
+        text-decoration: none;
+
+        &:hover{
+
+            text-decoration: underline;
+
+        }
+
+        img{
+
+            border: 0;
+
+        }
+
+        &.disabled{
+
+            color: $link-color-disabled;
+            cursor: not-allowed;
+
+        }
+
+    }
+
+    form{
+
+        margin: 0;
+        padding: 0;
+
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6{
+
+        color: $heading-color;
+        font-weight: $heading-font-weight;
+
+    }
+
+    h1{
+
+        font-size: $h1-font-size;
+
+    }
+
+    h2{
+
+        font-size: $h2-font-size;
+
+    }
+
+    h3{
+
+        font-size: $h3-font-size;
+
+    }
+
+    h4{
+
+        font-size: $h4-font-size;
+
+    }
+
+    h5{
+
+        font-size: $h5-font-size;
+
+    }
+
+    h6{
+
+        font-size: $h6-font-size;
+
+    }
+
+    p{
+
+        margin: 10px 0;
+        padding: 0;
+
+    }
+
+    ul{
+
+        padding: 0 0 10px 1.1em;
+
+    }
+
+    textarea{
+
+        font-family: $font-family;
+        font-size: $input-font-size;
+        resize: none;
+
+        @media #{global("media-queries.hd")}{
+            font-family: $font-family-hd;
+        }
+
+    }
+
+    input:not([type]),
+    input[type = "email"],
+    input[type = "password"],
+    input[type = "slug"],
+    input[type = "text"]{
+
+        background-color: #fbfbfb;
+        background-position: center right .5625rem;
+        background-repeat: no-repeat;
+        background-size: 1.125rem 1.125rem;
+        border: 1px solid $input-border-color;
+        border-radius: 3px;
+        color: $input-color;
+        display: block;
+        font-size: $input-font-size;
+        line-height: 1.4em;
+        margin: 6px 0;
+        padding: 8px 10px;
+        resize: none;
+        transition: border-color .3s ease-in-out, background-color .3s ease-in-out;
+        width: 100%;
+
+        &:focus{
+            background-color: $input-background;
+            border-color: $input-border-color-focus;
+        }
+
+    }
+
+    a.button,
+    input[type = "submit"],
+    input[type = "button"]{
+
+        appearance: none;
+        background: $input-button-background;
+        border: 1px solid darken($input-button-background, 5%);
+        border-radius: 3px;
+        box-shadow: 0 1px 0 rgba(255, 255, 255, .3) inset;
+        color: $input-button-color;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 1.4em;
+        margin: 17px 0;
+        padding: 8px 25px;
+        text-align: center;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, .15);
+
+        &.button-wide{
+            display: block;
+            width: 100%;
+        }
+
+        &:hover{
+            text-decoration: none;
+        }
+
+        &:focus{
+            background: $input-button-background;
+            border: 1px solid darken($input-button-background, 5%);
+        }
+
+    }
+
+    a.button.submit,
+    input[type = "submit"]{
+
+        background: $input-button-background-submit;
+        border: 1px solid darken($input-button-background-submit, 5%);
+
+        &:focus{
+            background: $input-button-background-submit;
+            border: 1px solid darken($input-button-background-submit, 5%);
+        }
+
+    }
+
+    input[type = "range"]{
+
+        appearance: none;
+        background: transparent;
+        cursor: pointer;
+        height: 25px;
+        margin: 5px 0;
+        min-width: 150px;
+        width: 100%;
+
+        &:focus{
+
+            outline: none;
+
+            &::-webkit-slider-runnable-track{
+                background: $range-track-color;
+            }
+
+            &::-ms-fill-lower,
+            &::-ms-fill-upper{
+                background: $range-track-color;
+            }
+
+        }
+
+        &::-webkit-slider-runnable-track{
+            background: $range-track-color;
+            border: $range-track-border;
+            border-radius: $range-track-radius;
+            box-shadow: $range-track-shadow;
+            cursor: pointer;
+            height: $range-track-height;
+            width: 100%;
+        }
+
+        &::-webkit-slider-thumb{
+            appearance: none;
+            background: $range-thumb-color;
+            border-radius: $range-thumb-radius;
+            box-shadow: $range-thumb-shadow;
+            cursor: pointer;
+            height: $range-thumb-height;
+            margin-top: $range-thumb-offset;
+            width: $range-thumb-width;
+        }
+
+        &::-moz-range-track{
+            background: $range-track-color;
+            border: $range-track-border;
+            border-radius: $range-track-radius;
+            box-shadow: $range-track-shadow;
+            cursor: pointer;
+            height: $range-track-height;
+            width: 100%;
+        }
+
+        &::-moz-range-thumb{
+            background: $range-thumb-color;
+            border-radius: $range-thumb-radius;
+            box-shadow: $range-thumb-shadow;
+            cursor: pointer;
+            height: $range-thumb-height;
+            width: $range-thumb-width;
+        }
+
+        &::-ms-track{
+            background: transparent;
+            border-color: transparent;
+            color: transparent;
+            cursor: pointer;
+            height: $range-track-height;
+            width: 100%;
+        }
+
+        &::-ms-thumb{
+            background: $range-thumb-color;
+            border-radius: $range-thumb-radius;
+            box-shadow: $range-thumb-shadow;
+            cursor: pointer;
+            height: $range-thumb-height;
+            width: $range-thumb-width;
+        }
+
+        &::-ms-fill-lower,
+        &::-ms-fill-upper{
+            background: $range-track-color;
+            border: $range-track-border;
+            border-radius: $range-track-radius;
+            box-shadow: $range-track-shadow;
+        }
+
+    }
+
+    input[type = "color"]{
+        cursor: pointer;
+    }
+
+}
+
+
+@mixin font-smooth(){
+
+    -moz-osx-font-smoothing:grayscale;
+    -webkit-font-smoothing:antialiased;
+
+}
